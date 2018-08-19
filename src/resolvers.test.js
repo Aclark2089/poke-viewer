@@ -10,7 +10,7 @@ const expectedResponse = { data: { id: expectedId } }
 
 beforeEach(() => axios.get.mockResolvedValue(expectedResponse));
 
-it('should resolve pokemon request', async () => {
+it('should make request to pokeapi with given id', async () => {
     await pokemonQuery(undefined, expectedInput);
     expect(axios.get).toHaveBeenCalledWith(expect.stringContaining(`${expectedId}`));
 });

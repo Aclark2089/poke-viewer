@@ -1,1 +1,1 @@
-# GraphQL Ex -- A Sample Apollo GraphQL Server
+# Poke Viewer -- A Pokemon Viewer App
