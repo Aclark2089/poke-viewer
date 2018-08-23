@@ -8,8 +8,7 @@
   "main": "index.js",
   "scripts": {
     "serve": "node dist/server.js",
-    "start": "nodemon index.js --exec babel-node",
-    "start:debug": "nodemon --inspect index.js --exec babel-node",
+    "start": "nodemon --inspect index.js --exec babel-node",
     "test": "jest -c jest.config.js",
     "test:int": "jest -c jest.config.integration.js",
     "build": "rimraf dist/ && babel src -d dist",
