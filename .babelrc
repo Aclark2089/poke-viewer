@@ -1,18 +1,16 @@
 {
-  "presets": [
-    [
-      "env",
-      {
-        "targets": {
-          "node": true
-        }
-      }
-    ]
-  ],
-  "env": {
-    "production": {
-      "presets": [["env", { "targets": { "node": "9.11.1" }, "debug": true }]]
-    }
-  },
-  "plugins": ["transform-object-rest-spread"]
+	"env": {
+		"development": {
+			"presets": [["env", { "targets": { "node": true }, "debug": true }]]
+    },
+    "test": {
+			"presets": [["env", { "targets": { "node": true }, "debug": true }]]
+    },
+		"production": {
+			"presets": [
+				["env", { "targets": { "node": "9.11.1" }, "debug": true }]
+			]
+		}
+	},
+	"plugins": ["transform-object-rest-spread"]
 }
