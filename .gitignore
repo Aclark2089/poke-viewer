@@ -1,10 +1,11 @@
 # IDE
-.idea/
 .vscode/
+.settings/
+.idea_modules/
+*.iws
+*.iml
 
 # Project Specific
 node_modules/
 dist/
 
-# Testing
-coverage/
