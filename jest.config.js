@@ -1,6 +1,7 @@
 module.exports = {
   bail: true,
   verbose: true,
+  clearMocks: true,
   coverageThreshold: {
     global: {
       branches: 80,
