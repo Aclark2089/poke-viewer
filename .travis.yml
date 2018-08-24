@@ -23,7 +23,6 @@ deploy:
   app: poke-viewer-graphql-service
   on:
     node: 9.11.1
-    repo: aclark2089/poke-viewer
   run: 
     - sleep
     - 'node dist/server.js'
