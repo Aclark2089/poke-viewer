@@ -4,6 +4,7 @@ import express from 'express';
 import schema from './schema';
 
 const app = express();
+const PORT = process.env.PORT || 4000;
 
 const server = new ApolloServer({
   schema,
@@ -12,6 +13,6 @@ const server = new ApolloServer({
 
 server.applyMiddleware({ app });
 
-app.listen({ port: 4000 }, () =>
-  console.log(`🚀 Pokemon server ready at http://localhost:4000${server.graphqlPath}`)
+app.listen({ port: PORT }, () =>
+  console.log(`🚀 Pokemon server ready at http://localhost:${PORT}${server.graphqlPath}`)
 );
