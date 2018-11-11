@@ -1,4 +1,5 @@
 import axios from "axios";
+import { linksResolver } from "./shared/utilities";
 
 const POKEAPI_URL = "http://pokeapi.co/api/v2";
 const POKEMON_REQUEST_URL = `${POKEAPI_URL}/pokemon`;
@@ -11,13 +12,7 @@ export const resolvers = {
     }
   },
   Pokemon: {
-    forms: ({ forms: formLinks }) => {
-      return Promise.all(
-        formLinks.map(formLink =>
-          axios.get(formLink.url).then(({ data: form }) => form)
-        )
-      );
-    }
+    forms: ({ forms: formLinks }) => linksResolver(formLinks)
   },
   PokemonAbility: {
     ability: async ({ ability: { url } }) => {
@@ -40,13 +35,30 @@ export const resolvers = {
     }
   },
   PokemonStat: {
-    stat: async({ stat: { url } }) => {
+    stat: async ({ stat: { url } }) => {
       return (await axios.get(url)).data;
     }
   },
   PokemonType: {
-    type: async({ type: { url } }) => {
-      return (await axios.get(url)).data;
+    type: async ({ type: { url } }) => {
+      const type = (await axios.get(url)).data;
+      return type;
+    }
+  },
+  TypeRelations: {
+    double_damage_to: ({ double_damage_to: typeLinks }) =>
+      linksResolver(typeLinks),
+    half_damage_to: ({ half_damage_to: typeLinks }) => linksResolver(typeLinks),
+    no_damage_from: ({ no_damage_from: typeLinks }) => linksResolver(typeLinks),
+    half_damage_from: ({ half_damage_from: typeLinks }) =>
+      linksResolver(typeLinks),
+    double_damage_from: ({ double_damage_from: typeLinks }) =>
+      linksResolver(typeLinks),
+    no_damage_to: ({ no_damage_to: typeLinks }) => linksResolver(typeLinks)
+  },
+  TypePokemon: {
+    pokemon: async ({ pokemon: pokemonLink }) => {
+      return (await axios.get(pokemonLink.url)).data;
     }
   }
 };
