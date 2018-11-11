@@ -26,7 +26,7 @@ const typeDefs = `
 
   type PokemonMove {
     move: Move
-    version_group_details: PokemonMoveVersion
+    version_group_details: [PokemonMoveVersion]
   }
 
   type PokemonStat {
@@ -76,7 +76,6 @@ const typeDefs = `
     is_battle_only: Boolean,
     is_mega: Boolean,
     form_name: String,
-    pokemon: Pokemon,
     version_group: VersionGroup,
     names: [Name],
     form_names: [Name]
