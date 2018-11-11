@@ -8,7 +8,8 @@ export const resolvers = {
   Query: {
     pokemon: async (root, { id }) => {
       const request = `${POKEMON_REQUEST_URL}/${id}`;
-      return (await axios.get(request)).data;
+      const { data: result } = await axios.get(request);
+      return result;
     }
   },
   Pokemon: {
@@ -16,27 +17,32 @@ export const resolvers = {
   },
   PokemonAbility: {
     ability: async ({ ability: { url } }) => {
-      return (await axios.get(url)).data;
+      const { data: ability } = await axios.get(url);
+      return ability;
     }
   },
   PokemonMove: {
     move: async ({ move: { url } }) => {
-      return (await axios.get(url)).data;
+      const { data: move } = await axios.get(url);
+      return move;
     }
   },
   PokemonMoveVersion: {
     move_learn_method: async ({ move_learn_method: { url } }) => {
-      return (await axios.get(url)).data;
+      const { data: move_learn_method } = await axios.get(url);
+      return move_learn_method;
     }
   },
   PokemonHeldItem: {
     item: async ({ item: { url } }) => {
-      return (await axios.get(url)).data;
+      const { data: item } = await axios.get(url);
+      return item;
     }
   },
   PokemonStat: {
     stat: async ({ stat: { url } }) => {
-      return (await axios.get(url)).data;
+      const { data: stat } = await axios.get(url);
+      return stat;
     }
   },
   PokemonType: {
@@ -58,7 +64,8 @@ export const resolvers = {
   },
   TypePokemon: {
     pokemon: async ({ pokemon: pokemonLink }) => {
-      return (await axios.get(pokemonLink.url)).data;
+      const { data: pokemon } = await axios.get(pokemonLink.url);
+      return pokemon;
     }
   }
 };
