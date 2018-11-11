@@ -3,12 +3,11 @@ import axios from "axios";
 const POKEAPI_URL = "http://pokeapi.co/api/v2";
 const POKEMON_REQUEST_URL = `${POKEAPI_URL}/pokemon`;
 
-const resolvers = {
+export const resolvers = {
   Query: {
     pokemon: async (root, { id }) => {
       const request = `${POKEMON_REQUEST_URL}/${id}`;
-      const { data } = await axios.get(request);
-      return data;
+      return (await axios.get(request)).data;
     }
   },
   Pokemon: {
@@ -21,26 +20,33 @@ const resolvers = {
     }
   },
   PokemonAbility: {
-    ability: async ({ ability: abilityLink }) => {
-      const { url } = abilityLink;
-      const { data } = await axios.get(url);
-      return data;
+    ability: async ({ ability: { url } }) => {
+      return (await axios.get(url)).data;
     }
   },
   PokemonMove: {
-    move: async ({ move: moveLink }) => {
-      const { url } = moveLink;
-      const { data } = await axios.get(url);
-      return data;
+    move: async ({ move: { url } }) => {
+      return (await axios.get(url)).data;
     }
   },
   PokemonMoveVersion: {
-    move_learn_method: async ({ move_learn_method: moveLearnMethodLink }) => {
-      const { url } = moveLearnMethodLink;
-      const { data } = await axios.get(url);
-      return data;
+    move_learn_method: async ({ move_learn_method: { url } }) => {
+      return (await axios.get(url)).data;
+    }
+  },
+  PokemonHeldItem: {
+    item: async ({ item: { url } }) => {
+      return (await axios.get(url)).data;
+    }
+  },
+  PokemonStat: {
+    stat: async({ stat: { url } }) => {
+      return (await axios.get(url)).data;
+    }
+  },
+  PokemonType: {
+    type: async({ type: { url } }) => {
+      return (await axios.get(url)).data;
     }
   }
 };
-
-export default resolvers;
