@@ -13,7 +13,11 @@ export const resolvers = {
     }
   },
   Pokemon: {
-    forms: ({ forms: formLinks }) => linksResolver(formLinks)
+    forms: ({ forms: formLinks }) => linksResolver(formLinks),
+    species: async ({ species: { url } }) => {
+      const { data: species } = await axios.get(url);
+      return species;
+    }
   },
   PokemonAbility: {
     ability: async ({ ability: { url } }) => {
@@ -67,5 +71,23 @@ export const resolvers = {
       const { data: pokemon } = await axios.get(pokemonLink.url);
       return pokemon;
     }
+  },
+  PokemonSpecies: {
+    generation: async ({ generation: { url } }) => {
+      const { data: generation } = await axios.get(url);
+      return generation;
+    },
+    evolution_chain: async ({ evolution_chain: { url } }) => {
+      const { data: evolution_chain } = await axios.get(url);
+      return evolution_chain;
+    },
+    color: async ({ color: { url } }) => {
+      const { data: color } = await axios.get(url);
+      return color;
+    }
+  },
+  PokemonColor: {
+    pokemon_species: ({ pokemon_species: speciesLinks }) =>
+      linksResolver(speciesLinks)
   }
 };
