@@ -143,7 +143,7 @@ const typeDefs = `
     id: Int,
     name: String,
     names: [Name],
-    pokemon_speices: [PokemonSpecies]
+    pokemon_species: [PokemonSpecies]
   }
 
   type EvolutionChain {
@@ -155,7 +155,7 @@ const typeDefs = `
   type ChainLink {
     is_baby: Boolean,
     species: PokemonSpecies,
-    evolves_to: ChainLink
+    evolves_to: [ChainLink]
   }
 
   type FlavorText {

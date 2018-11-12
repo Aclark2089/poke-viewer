@@ -17,6 +17,7 @@ describe("Top level resolvers", () => {
     const input = { id: expectedId };
 
     const actualResult = await resolvers.Query.pokemon(undefined, input);
+
     expect(actualResult).toEqual(expectedResult);
   });
 
@@ -26,6 +27,7 @@ describe("Top level resolvers", () => {
         url: testUrl
       }
     };
+
     const actualResult = await resolvers.PokemonAbility.ability(input);
 
     expect(axios.get).toHaveBeenCalledWith(testUrl);
@@ -38,6 +40,7 @@ describe("Top level resolvers", () => {
         url: testUrl
       }
     };
+
     const actualResult = await resolvers.PokemonMove.move(input);
 
     expect(axios.get).toHaveBeenCalledWith(testUrl);
@@ -50,6 +53,7 @@ describe("Top level resolvers", () => {
         url: testUrl
       }
     };
+
     const actualResult = await resolvers.PokemonMoveVersion.move_learn_method(input);
 
     expect(axios.get).toHaveBeenCalledWith(testUrl);
@@ -62,6 +66,7 @@ describe("Top level resolvers", () => {
         url: testUrl
       }
     };
+
     const actualResult = await resolvers.PokemonHeldItem.item(input);
 
     expect(axios.get).toHaveBeenCalledWith(testUrl);
@@ -74,6 +79,7 @@ describe("Top level resolvers", () => {
         url: testUrl
       }
     };
+
     const actualResult = await resolvers.PokemonStat.stat(input);
 
     expect(axios.get).toHaveBeenCalledWith(testUrl);
@@ -86,7 +92,60 @@ describe("Top level resolvers", () => {
         url: testUrl
       }
     };
+
     const actualResult = await resolvers.PokemonType.type(input);
+
+    expect(axios.get).toHaveBeenCalledWith(testUrl);
+    expect(actualResult).toEqual(expectedResult);
+  });
+
+  it('should resolve the Pokemon species attribute by getting linked content from url', async () => {
+    const input = {
+      species: {
+        url: testUrl
+      }
+    };
+
+    const actualResult = await resolvers.Pokemon.species(input);
+
+    expect(axios.get).toHaveBeenCalledWith(testUrl);
+    expect(actualResult).toEqual(expectedResult);
+  });
+
+  it('should resolve the PokemonSpecies generation attribute by getting linked content from url', async () => {
+    const input = {
+      generation: {
+        url: testUrl
+      }
+    };
+
+    const actualResult = await resolvers.PokemonSpecies.generation(input);
+
+    expect(axios.get).toHaveBeenCalledWith(testUrl);
+    expect(actualResult).toEqual(expectedResult);
+  });
+
+  it('should resolve the PokemonSpecies evolution_chain attribute by getting linked content from url', async () => {
+    const input = {
+      evolution_chain: {
+        url: testUrl
+      }
+    };
+
+    const actualResult = await resolvers.PokemonSpecies.evolution_chain(input);
+
+    expect(axios.get).toHaveBeenCalledWith(testUrl);
+    expect(actualResult).toEqual(expectedResult);
+  });
+
+  it('should resolve the PokemonSpecies color attribute by getting linked content from url', async () => {
+    const input = {
+      color: {
+        url: testUrl
+      }
+    };
+
+    const actualResult = await resolvers.PokemonSpecies.color(input);
 
     expect(axios.get).toHaveBeenCalledWith(testUrl);
     expect(actualResult).toEqual(expectedResult);
@@ -116,6 +175,7 @@ describe("Resolvers using link collections", () => {
       };
 
       const actualResult = await resolvers.Pokemon.forms(input);
+
       expect(linksResolver).toHaveBeenCalledWith(testLinks);
       expect(actualResult).toEqual(testContent);
     });
@@ -189,6 +249,19 @@ describe("Resolvers using link collections", () => {
       };
 
       const actualResult = await resolvers.TypeRelations.no_damage_to(input);
+
+      expect(linksResolver).toHaveBeenCalledWith(testLinks);
+      expect(actualResult).toEqual(testContent);
+    });
+  });
+
+  describe('PokemonColor', () => {
+    it('should resolve pokemon_species attribute by getting all content from their associated urls', async () => {
+      const input = {
+        pokemon_species: testLinks
+      };
+
+      const actualResult = await resolvers.PokemonColor.pokemon_species(input);
 
       expect(linksResolver).toHaveBeenCalledWith(testLinks);
       expect(actualResult).toEqual(testContent);
