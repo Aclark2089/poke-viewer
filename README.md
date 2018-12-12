@@ -1,1 +1,2 @@
-# Poke Viewer -- A Pokemon Viewer App
+# Poke Viewer Graphql
+A GraphQL wrapper for the PokeAPI
