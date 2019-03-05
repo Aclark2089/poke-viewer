@@ -54,7 +54,9 @@ describe("Top level resolvers", () => {
       }
     };
 
-    const actualResult = await resolvers.PokemonMoveVersion.move_learn_method(input);
+    const actualResult = await resolvers.PokemonMoveVersion.move_learn_method(
+      input
+    );
 
     expect(axios.get).toHaveBeenCalledWith(testUrl);
     expect(actualResult).toEqual(expectedResult);
@@ -99,7 +101,7 @@ describe("Top level resolvers", () => {
     expect(actualResult).toEqual(expectedResult);
   });
 
-  it('should resolve the Pokemon species attribute by getting linked content from url', async () => {
+  it("should resolve the Pokemon species attribute by getting linked content from url", async () => {
     const input = {
       species: {
         url: testUrl
@@ -112,7 +114,7 @@ describe("Top level resolvers", () => {
     expect(actualResult).toEqual(expectedResult);
   });
 
-  it('should resolve the PokemonSpecies generation attribute by getting linked content from url', async () => {
+  it("should resolve the PokemonSpecies generation attribute by getting linked content from url", async () => {
     const input = {
       generation: {
         url: testUrl
@@ -125,7 +127,7 @@ describe("Top level resolvers", () => {
     expect(actualResult).toEqual(expectedResult);
   });
 
-  it('should resolve the PokemonSpecies evolution_chain attribute by getting linked content from url', async () => {
+  it("should resolve the PokemonSpecies evolution_chain attribute by getting linked content from url", async () => {
     const input = {
       evolution_chain: {
         url: testUrl
@@ -138,7 +140,7 @@ describe("Top level resolvers", () => {
     expect(actualResult).toEqual(expectedResult);
   });
 
-  it('should resolve the PokemonSpecies color attribute by getting linked content from url', async () => {
+  it("should resolve the PokemonSpecies color attribute by getting linked content from url", async () => {
     const input = {
       color: {
         url: testUrl
@@ -255,8 +257,8 @@ describe("Resolvers using link collections", () => {
     });
   });
 
-  describe('PokemonColor', () => {
-    it('should resolve pokemon_species attribute by getting all content from their associated urls', async () => {
+  describe("PokemonColor", () => {
+    it("should resolve pokemon_species attribute by getting all content from their associated urls", async () => {
       const input = {
         pokemon_species: testLinks
       };

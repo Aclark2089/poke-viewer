@@ -16,16 +16,14 @@ const expectedLinks = [
     url: "url2"
   }
 ];
-const expectedContent = [testData, testData]
+const expectedContent = [testData, testData];
 
 beforeEach(() => {
   axios.get.mockResolvedValue(testLinkResponse);
 });
 
 it("should resolve a collection of links to actual content", async () => {
-    const actualContent = await linksResolver(expectedLinks);
+  const actualContent = await linksResolver(expectedLinks);
 
-    expect(actualContent).toEqual(expectedContent);
+  expect(actualContent).toEqual(expectedContent);
 });
-
-
