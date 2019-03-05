@@ -1,5 +1,5 @@
-import { resolvers } from "./resolvers";
-import { makeExecutableSchema } from "graphql-tools";
+import { resolvers } from './resolvers';
+import { makeExecutableSchema } from 'graphql-tools';
 
 const typeDefs = `
   type Query {
