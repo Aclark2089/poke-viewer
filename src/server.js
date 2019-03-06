@@ -2,12 +2,16 @@ import axios from 'axios';
 import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
 import schema from './schema';
+import { pokeAPI } from './datasource';
 
 const app = express();
 const PORT = process.env.PORT || 4000;
 
 const server = new ApolloServer({
     schema,
+    dataSources: () => ({
+        pokeAPI,
+    }),
     onHealthCheck: async () =>
         await axios.get('https://fourtonfish.com/hellosalut/?mode=auto').data,
 });

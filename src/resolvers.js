@@ -1,16 +1,10 @@
 import axios from 'axios';
 import { linksResolver } from './shared/utilities';
 
-const POKEAPI_URL = 'http://pokeapi.co/api/v2';
-const POKEMON_REQUEST_URL = `${POKEAPI_URL}/pokemon`;
-
 export const resolvers = {
     Query: {
-        pokemon: async (root, { id }) => {
-            const request = `${POKEMON_REQUEST_URL}/${id}`;
-            const { data: result } = await axios.get(request);
-            return result;
-        },
+        pokemon: async (root, { id }, { dataSources: { pokeAPI } }) =>
+            pokeAPI.getPokemonById(id),
     },
     Pokemon: {
         forms: ({ forms: formLinks }) => linksResolver(formLinks),

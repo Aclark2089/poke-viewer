@@ -15,8 +15,13 @@ describe('Top level resolvers', () => {
     it('should make Query pokemon request to pokeapi with given id', async () => {
         const expectedId = 1;
         const input = { id: expectedId };
+        const mockPokeAPI = {
+            getPokemonById: jest.fn(() => Promise.resolve(expectedResult)),
+        };
 
-        const actualResult = await resolvers.Query.pokemon(undefined, input);
+        const actualResult = await resolvers.Query.pokemon(undefined, input, {
+            dataSources: { pokeAPI: mockPokeAPI },
+        });
 
         expect(actualResult).toEqual(expectedResult);
     });
