@@ -7,7 +7,7 @@ export class PokeAPI extends RESTDataSource {
     }
 
     async getPokemonById(id) {
-        const pokemon = await this.get(`/pokemon/${id}`);
+        const pokemon = await this.get(`pokemon/${id}`);
         return pokemon;
     }
 }
