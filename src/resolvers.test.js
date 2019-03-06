@@ -120,15 +120,22 @@ describe('Top level resolvers', () => {
     });
 
     it('should resolve the PokemonSpecies generation attribute by getting linked content from url', async () => {
+        const expectedResult = 'species';
         const input = {
             generation: {
                 url: testUrl,
             },
         };
+        const mockPokeAPI = {
+            hateoasUrlResolve: jest.fn(() => Promise.resolve(expectedResult)),
+        };
 
-        const actualResult = await resolvers.PokemonSpecies.generation(input);
+        const actualResult = await resolvers.PokemonSpecies.generation(
+            input,
+            null,
+            { dataSources: { pokeAPI: mockPokeAPI } }
+        );
 
-        expect(axios.get).toHaveBeenCalledWith(testUrl);
         expect(actualResult).toEqual(expectedResult);
     });
 
@@ -272,16 +279,23 @@ describe('Resolvers using link collections', () => {
 
     describe('PokemonColor', () => {
         it('should resolve pokemon_species attribute by getting all content from their associated urls', async () => {
+            const expectedResult = ['species1', 'species2'];
             const input = {
                 pokemon_species: testLinks,
             };
+            const mockPokeAPI = {
+                hateoasUrlsResolver: jest.fn(() =>
+                    Promise.resolve(expectedResult)
+                ),
+            };
 
             const actualResult = await resolvers.PokemonColor.pokemon_species(
-                input
+                input,
+                null,
+                { dataSources: { pokeAPI: mockPokeAPI } }
             );
 
-            expect(linksResolver).toHaveBeenCalledWith(testLinks);
-            expect(actualResult).toEqual(testContent);
+            expect(actualResult).toEqual(expectedResult);
         });
     });
 });

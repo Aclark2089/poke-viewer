@@ -69,10 +69,11 @@ export const resolvers = {
         },
     },
     PokemonSpecies: {
-        generation: async ({ generation: { url } }) => {
-            const { data: generation } = await axios.get(url);
-            return generation;
-        },
+        generation: async (
+            { generation: { url } },
+            _,
+            { dataSources: { pokeAPI } }
+        ) => pokeAPI.hateoasUrlResolve(url),
         evolution_chain: async ({ evolution_chain: { url } }) => {
             const { data: evolution_chain } = await axios.get(url);
             return evolution_chain;
@@ -83,7 +84,10 @@ export const resolvers = {
         },
     },
     PokemonColor: {
-        pokemon_species: ({ pokemon_species: speciesLinks }) =>
-            linksResolver(speciesLinks),
+        pokemon_species: (
+            { pokemon_species: speciesLinks },
+            _,
+            { dataSources: { pokeAPI } }
+        ) => pokeAPI.hateoasUrlsResolver(speciesLinks),
     },
 };
