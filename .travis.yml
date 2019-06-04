@@ -4,15 +4,15 @@ node_js:
 - 9.11.1
 
 before_install:
-- npm i -g npm@latest
+- npm i -g yarn@latest
 
 cache:
   directories:
   - node_modules
 
 script:
-- npm run lint
-- npm run test
+- yarn lint
+- yarn test
 
 deploy:
   provider: heroku
