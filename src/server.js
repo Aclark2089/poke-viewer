@@ -16,8 +16,6 @@ server.applyMiddleware({ app });
 
 app.listen({ port: PORT }, () =>
     console.log(
-        `🚀 Pokemon server ready at http://localhost:${PORT}${
-            server.graphqlPath
-        }`
+        `🚀 Pokemon server ready at http://localhost:${PORT}${server.graphqlPath}`
     )
 );
