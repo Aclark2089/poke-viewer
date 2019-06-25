@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 4000;
 
 const server = new ApolloServer({
     schema,
+    introspection: true,
     onHealthCheck: async () =>
         await axios.get('https://fourtonfish.com/hellosalut/?mode=auto').data,
 });

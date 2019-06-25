@@ -10,9 +10,10 @@
         "serve": "node src/index.js",
         "start": "nodemon --inspect src/index.js",
         "test": "jest -c jest.config.js",
-        "test:int": "jest -c jest.config.integration.js",
         "lint": "eslint src/",
         "format": "prettier --write \"src/**/*.js\"",
+        "ci:test": "yarn test --coverage --runInBand",
+        "ci:validate": "concurrently --kill-others-on-fail \"yarn lint\" \"yarn ci:test\"",
         "update": "yarn upgrade-interactive --latest"
     },
     "keywords": [
@@ -28,6 +29,7 @@
         "@babel/preset-env": "^7.4.5",
         "babel-eslint": "^10.0.2",
         "babel-jest": "^24.8.0",
+        "concurrently": "^4.1.0",
         "dotenv": "^8.0.0",
         "eslint": "^6.0.1",
         "eslint-config-prettier": "^5.0.0",
