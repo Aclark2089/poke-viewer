@@ -1,0 +1,11 @@
+node_modules/
+.vscode/
+./**/*.test.*
+.eslintrc.js
+.travis.yml
+babel.config.js
+Procfile
+README.md
+jest.*
+.gitignore
+coverage/
